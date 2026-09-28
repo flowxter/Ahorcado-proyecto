@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="contenedor">
+        <h1>Juego del Ahorcado</h1>
+
+        {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                {% for mensaje in mensajes %}
+                    <p class="aviso">{{ mensaje }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <pre class="dibujo">{{ juego.dibujo }}</pre>
+
+        <p class="palabra">{{ juego.mostrada }}</p>
+
+        <p>Intentos restantes: <strong>{{ juego.intentos_restantes }}</strong> / {{ juego.max_intentos }}</p>
+        <p>Letras falladas:
+            {% if juego.falladas %}
+                <span class="falladas">{{ juego.falladas | map('upper') | join(', ') }}</span>
+            {% else %}
+                <span>Ninguna</span>
+            {% endif %}
+        </p>
+
+        {% if juego.gano %}
+            <p class="resultado gano">¡Ganaste! La palabra era {{ juego.palabra }}.</p>
+        {% elif juego.perdio %}
+            <p class="resultado perdio">Perdiste. La palabra era {{ juego.palabra }}.</p>
+        {% endif %}
+
+        {% if not juego.terminado %}
+            <form action="{{ url_for('adivinar') }}" method="post" class="teclado">
+                {% for letra in abecedario %}
+                    <button type="submit" name="letra" value="{{ letra }}"
+                            {% if letra in juego.usadas %}disabled{% endif %}
+                            class="{% if letra in juego.adivinadas %}acierto{% elif letra in juego.falladas %}fallo{% endif %}">
+                        {{ letra | upper }}
+                    </button>
+                {% endfor %}
+            </form>
+
+            <form action="{{ url_for('adivinar') }}" method="post" class="entrada">
+                <input type="text" name="letra" maxlength="1" placeholder="Escribe una letra" autocomplete="off" required>
+                <button type="submit">Probar</button>
+            </form>
+        {% endif %}
+
+        <a class="reiniciar" href="{{ url_for('reiniciar') }}">Nueva partida</a>
+    </main>
+</body>
+</html>

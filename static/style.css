@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f2f4f8;
+    color: #222;
+}
+
+.contenedor {
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.dibujo {
+    display: inline-block;
+    text-align: left;
+    font-family: "Courier New", monospace;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    background: #fafafa;
+    padding: 12px 24px;
+    border-radius: 8px;
+}
+
+.palabra {
+    font-size: 2rem;
+    letter-spacing: 0.3rem;
+    font-weight: bold;
+    margin: 16px 0;
+}
+
+.falladas {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.aviso {
+    background: #fff3cd;
+    color: #7a5b00;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.resultado {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.gano {
+    background: #d4edda;
+    color: #1e6b32;
+}
+
+.perdio {
+    background: #f8d7da;
+    color: #a12622;
+}
+
+.teclado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 16px 0;
+}
+
+.teclado button {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.teclado button:hover:not(:disabled) {
+    background: #e8f0fe;
+}
+
+.teclado button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.teclado button.acierto {
+    background: #d4edda;
+}
+
+.teclado button.fallo {
+    background: #f8d7da;
+}
+
+.entrada {
+    margin: 12px 0;
+}
+
+.entrada input {
+    width: 140px;
+    padding: 8px;
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.entrada button {
+    padding: 8px 14px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background: #2f6fed;
+    color: #fff;
+    cursor: pointer;
+}
+
+.reiniciar {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: #444;
+    color: #fff;
+    text-decoration: none;
+}
+
+.reiniciar:hover {
+    background: #222;
+}
