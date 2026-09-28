@@ -1,10 +1,11 @@
+import os
 import random
 import unicodedata
 
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 
 app = Flask(__name__)
-app.secret_key = "cambia-esta-clave-secreta"
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-only-secret-key")
 
 PALABRAS = [
     "python", "flask", "servidor", "programa", "teclado", "pantalla",
